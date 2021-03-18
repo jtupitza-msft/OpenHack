@@ -1,0 +1,91 @@
+{
+	"name": "FourthCoffeeExport",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "FileServerReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "FourthCoffeeFiles",
+						"type": "DatasetReference",
+						"parameters": {
+							"FILE_NAME": {
+								"value": "@pipeline().parameters.SOURCE_FILENAME",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SouthridgeADLS_CSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"FILE_NAME": {
+								"value": "@pipeline().parameters.TARGET_FILENAME",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"SOURCE_FILENAME": {
+				"type": "string"
+			},
+			"TARGET_FILENAME": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "FourthCoffee"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-03-17T18:20:57Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

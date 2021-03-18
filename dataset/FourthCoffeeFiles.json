@@ -1,0 +1,35 @@
+{
+	"name": "FourthCoffeeFiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FourthCoffeeFileServer",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FILE_NAME": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "FourthCoffee"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": {
+					"value": "@dataset().FILE_NAME",
+					"type": "Expression"
+				},
+				"folderPath": "Rentals"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,12 @@
+{
+	"name": "VanArsdelIR",
+	"properties": {
+		"type": "SelfHosted",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/49c8fb06-83d0-410a-81dd-c687e23bd829/resourcegroups/mdw-oh-01-eastus/providers/Microsoft.DataFactory/factories/southridge-adf/integrationruntimes/VanArsdelIR",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}

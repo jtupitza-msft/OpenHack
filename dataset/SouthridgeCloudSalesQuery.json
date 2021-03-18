@@ -1,0 +1,16 @@
+{
+	"name": "SouthridgeCloudSalesQuery",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SouthridgeCloudSalesSQL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Southridge"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

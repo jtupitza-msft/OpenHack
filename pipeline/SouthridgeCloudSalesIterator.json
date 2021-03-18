@@ -1,0 +1,88 @@
+{
+	"name": "SouthridgeCloudSalesIterator",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetCloudSalesTables",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT s.name as schema_name,\nt.name as table_name\nFROM sys.tables t\nINNER JOIN sys.schemas s\nON (s.schema_id = t.schema_id)\nWHERE s.name = 'dbo'",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SouthridgeCloudSalesQuery",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "GetCloudSalesTables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('GetCloudSalesTables').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "SouthridgeCloudSalesExport",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"SCHEMA_NAME": {
+										"value": "@item().schema_name",
+										"type": "Expression"
+									},
+									"TABLE_NAME": {
+										"value": "@item().table_name",
+										"type": "Expression"
+									},
+									"FILE_NAME": {
+										"value": "@concat('cloud_sales/', toLower(item().table_name), '.csv')",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"folder": {
+			"name": "Southridge"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-03-17T12:54:04Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

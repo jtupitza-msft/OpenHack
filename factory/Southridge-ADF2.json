@@ -1,0 +1,9 @@
+{
+	"name": "Southridge-ADF2",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "5ad6001f-4eb1-4ef9-9a8d-08e48ccc497a",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}

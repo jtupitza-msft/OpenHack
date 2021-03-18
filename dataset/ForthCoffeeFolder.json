@@ -1,0 +1,36 @@
+{
+	"name": "ForthCoffeeFolder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FourthCoffeeFileServer",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "FourthCoffee"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"folderPath": "Rentals"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

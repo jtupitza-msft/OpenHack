@@ -1,0 +1,24 @@
+{
+	"name": "SouthridgeADLS_JSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SouthridgeADLS",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Southridge/Sink"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "movies.json",
+				"folderPath": "raw/movies",
+				"fileSystem": "southridge"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
