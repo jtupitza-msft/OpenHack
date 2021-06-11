@@ -1,0 +1,9 @@
+{
+	"name": "southridge-adf-demo",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4f3df033-b507-46e2-9e35-7be9d81440fd",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}
